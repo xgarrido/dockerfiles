@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     curl                                 \
     git                                  \
     libbz2-dev                           \
+    libglu1-mesa-dev                     \
     libjpeg-dev                          \
     libx11-dev                           \
     libxext-dev                          \
@@ -23,7 +24,7 @@ RUN locale-gen en_US.UTF-8
 
 RUN useradd -m -U snemo
 
-USER snware
+USER snemo
 WORKDIR /home/snemo
 
 # Zsh env.
@@ -32,3 +33,6 @@ RUN git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
 RUN /bin/zsh -i ~/.config/zsh/antigen/antigen.zsh update
 
 # SuperNEMO/software
+RUN mkdir -p ~/.ssh
+RUN ssh-keyscan github.com > ~/.ssh/known_hosts
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @snemo"
