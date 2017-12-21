@@ -2,15 +2,13 @@
 #+DATE: 2017/12/20
 #+AUTHOR: Xavier Garrido
 
-* =Dockerfile= for SuperNEMO software
-
 In these directories, you will find several =Dockerfiles= to build SuperNEMO software. The
 installation process is done from scratch using different docker images (presently only ubuntu 16.04
 is supported).
 
 The next section shows you how to build and to run the docker image.
 
-** Building the image
+* Building the image
 
 You can first checkout this repository
 #+BEGIN_SRC shell
@@ -33,3 +31,12 @@ Every time you use the =build= command, =docker= uses a cached version to decrea
 time. If you want to restart from scratch (for instance to update a remote git repository within
 your =docker= image), you should use the =--no-cache= option in the =docker build= command line. All the
 options of =docker build= command can be found [[https://docs.docker.com/engine/reference/commandline/build/][here]].
+
+* Running the image
+
+Given that the =build= operation succeeds, you can interactively run your image by doing
+#+BEGIN_SRC shell
+  $ docker run -it snemo/ubuntu1604:latest /bin/zsh
+#+END_SRC
+You will be prompted to a =zsh= terminal where SuperNEMO software is installed in
+=/home/snemo/software=.
