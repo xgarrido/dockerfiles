@@ -4,4 +4,4 @@
 
 =git= repository to store several =Dockerfile=. See the corresponding README to know how to use them:
 
-- for SuperNEMO software [[file:snemo/README.org]]
+- for SuperNEMO software [[file:snemo/README.org][link]]
