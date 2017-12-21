@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     libpng12-dev                         \
     locales                              \
     ruby                                 \
+    qt5-default                          \
     subversion                           \
     wget                                 \
     zlib1g-dev                           \
@@ -33,6 +34,4 @@ RUN git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
 RUN /bin/zsh -i ~/.config/zsh/antigen/antigen.zsh update
 
 # SuperNEMO/software
-RUN mkdir -p ~/.ssh
-RUN ssh-keyscan github.com > ~/.ssh/known_hosts
 RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @snemo"
