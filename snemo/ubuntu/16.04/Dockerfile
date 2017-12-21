@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libbz2-dev                           \
     libglu1-mesa-dev                     \
     libjpeg-dev                          \
+    libqt5svg5-dev                       \
     libx11-dev                           \
     libxext-dev                          \
     libxft-dev                           \
@@ -34,4 +35,6 @@ RUN git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
 RUN /bin/zsh -i ~/.config/zsh/antigen/antigen.zsh update
 
 # SuperNEMO/software
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @snemo"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software brew"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software bayeux"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software --falaise-version=SuperNEMO-DBD falaise"
