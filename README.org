@@ -1,0 +1,7 @@
+#+TITLE: Dockerfile(s) repository
+#+DATE: 2017/12/21
+#+AUTHOR: Xavier Garrido
+
+=git= repository to store several =Dockerfile=. See the corresponding README to know how to use them:
+
+- for SuperNEMO software [[file:snemo/README.org]]
