@@ -20,7 +20,7 @@ and then run the next command from your local repository
   $ docker build -t snemo/ubuntu16.04 .
 #+END_SRC
 
-You can also build the docker image without checking out the github repository by doing
+You can also build the =docker= image without checking out the github repository by doing
 #+BEGIN_SRC shell
   $ docker build -t snemo/ubuntu16.04 "github.com/xgarrido/dockerfiles#:snemo/ubuntu/16.04"
 #+END_SRC
@@ -36,7 +36,14 @@ options of =docker build= command can be found [[https://docs.docker.com/engine/
 
 Given that the =build= operation succeeds, you can interactively run your image by doing
 #+BEGIN_SRC shell
-  $ docker run -it snemo/ubuntu1604:latest /bin/zsh
+  $ docker run --rm -it snemo/ubuntu1604:latest /bin/zsh
 #+END_SRC
-You will be prompted to a =zsh= terminal where SuperNEMO software is installed in
-=/home/snemo/software=.
+You will be prompted as =snemo= user to a =zsh= terminal; SuperNEMO software is installed in
+=/home/snemo/software=. The =--rm= ensures everything gets cleaned when stopping the image.
+
+To forward =DISPLAY=, you should add the following options
+#+BEGIN_SRC shell
+  $ docker run -e DISPLAY=$DISPLAY \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       --rm -it snemo/ubuntu1604:latest /bin/zsh
+#+END_SRC

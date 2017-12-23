@@ -25,8 +25,8 @@ RUN apt-get update && apt-get install -y \
 RUN locale-gen en_US.UTF-8
 
 RUN useradd -m -U snemo
-
 USER snemo
+ENV USER snemo
 WORKDIR /home/snemo
 
 # Zsh env.
