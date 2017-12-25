@@ -41,7 +41,11 @@ Given that the =build= operation succeeds, you can interactively run your image 
 You will be prompted as =snemo= user to a =zsh= terminal; SuperNEMO software is installed in
 =/home/snemo/software=. The =--rm= ensures everything gets cleaned when stopping the image.
 
-To forward =DISPLAY=, you should add the following options
+To forward =DISPLAY=, you should frist allow =docker= to do it
+#+BEGIN_SRC shell
+  $ xhost +local:docker
+#+END_SRC
+and then you should add the following options to the =docker run= command
 #+BEGIN_SRC shell
   $ docker run -e DISPLAY=$DISPLAY \
        -v /tmp/.X11-unix:/tmp/.X11-unix \
