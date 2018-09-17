@@ -3,7 +3,10 @@ MAINTAINER Xavier Garrido <xavier.garrido@lal.in2p3.fr>
 
 RUN apt-get update && apt-get install -y \
     build-essential                      \
+    gfortran                             \
     git                                  \
+    libblas-dev                          \
+    liblapack-dev                        \
     python2.7-dev                        \
     wget                                 \
     zsh
@@ -19,9 +22,4 @@ RUN git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
 RUN /bin/zsh -i ~/.config/zsh/antigen/antigen.zsh update
 
 # CMB/software
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software python2"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cmt"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software class"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software pypico"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software planck"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software camel"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @cmb"
