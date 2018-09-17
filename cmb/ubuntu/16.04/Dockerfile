@@ -4,10 +4,9 @@ MAINTAINER Xavier Garrido <xavier.garrido@lal.in2p3.fr>
 RUN apt-get update && apt-get install -y \
     build-essential                      \
     git                                  \
+    python2.7-dev                        \
     wget                                 \
     zsh
-
-RUN locale-gen en_US.UTF-8
 
 RUN useradd -m -U cmb
 USER cmb
@@ -19,5 +18,10 @@ RUN wget --no-check-certificate https://raw.github.com/xgarrido/dotfiles/master/
 RUN git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
 RUN /bin/zsh -i ~/.config/zsh/antigen/antigen.zsh update
 
-# SuperNEMO/software
+# CMB/software
 RUN /bin/zsh -i -c "pkgman install --install-dir ~/software python2"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cmt"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software class"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software pypico"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software planck"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software camel"
