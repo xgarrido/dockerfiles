@@ -2,6 +2,55 @@
 #+DATE: 2017/12/21
 #+AUTHOR: Xavier Garrido
 
-=git= repository to store several =Dockerfile=. See the corresponding README to know how to use them:
+=git= repository to store several =Dockerfile=. In these directories, you will find several =Dockerfiles=
+to build SuperNEMO, CMB softwares. The installation process is done from scratch using different
+docker images (presently only ubuntu 16.04 is supported).
 
-- for SuperNEMO software [[file:snemo/README.org][link]]
+The next section shows you how to build and to run the docker image for the SuperNEMO software. It
+works the same for the CMB software.
+
+* Building the image
+
+You can first checkout this repository
+#+BEGIN_SRC shell
+  $ git clone https://github.com/xgarrido/dockerfiles
+#+END_SRC
+and then run the next command from your local repository
+#+BEGIN_SRC shell
+  $ cd snemo/ubuntu/16.04
+  $ docker build -t snemo/ubuntu16.04 .
+#+END_SRC
+
+You can also build the =docker= image without checking out the github repository by doing
+#+BEGIN_SRC shell
+  $ docker build -t snemo/ubuntu16.04 "github.com/xgarrido/dockerfiles#:snemo/ubuntu/16.04"
+#+END_SRC
+
+The =-t= flag set the name of the image and will be used when running your container.
+
+Every time you use the =build= command, =docker= uses a cached version to decrease the start
+time. If you want to restart from scratch (for instance to update a remote git repository within
+your =docker= image), you should use the =--no-cache= option in the =docker build= command line. All the
+options of =docker build= command can be found [[https://docs.docker.com/engine/reference/commandline/build/][here]].
+
+* Running the image
+
+Given that the =build= operation succeeds, you can interactively run your image by doing
+#+BEGIN_SRC shell
+  $ docker run --rm -it snemo/ubuntu16.04:latest /bin/zsh
+#+END_SRC
+You will be prompted as =snemo= user to a =zsh= terminal; SuperNEMO software is installed in
+=/home/snemo/software=. The =--rm= ensures everything gets cleaned when stopping the image.
+
+To forward =DISPLAY=, you should frist allow =docker= to do it
+#+BEGIN_SRC shell
+  $ xhost +local:docker
+#+END_SRC
+and then you should add the following options to the =docker run= command
+#+BEGIN_SRC shell
+  $ docker run -e DISPLAY=$DISPLAY \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       --rm -it snemo/ubuntu16.04:latest /bin/zsh
+#+END_SRC
+
+* Sharing directories between docker image and your local computer
