@@ -7,7 +7,9 @@ RUN apt-get update && apt-get install -y \
     git                                  \
     libblas-dev                          \
     liblapack-dev                        \
+    python2.7                            \
     python2.7-dev                        \
+    python-tk                            \
     wget                                 \
     zsh
 
@@ -19,7 +21,15 @@ WORKDIR /home/cmb
 # Zsh env.
 RUN wget --no-check-certificate https://raw.github.com/xgarrido/dotfiles/master/zshrc -O ~/.zshrc
 RUN git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
-RUN /bin/zsh -i ~/.config/zsh/antigen/antigen.zsh update
+RUN /bin/zsh -i -c "antigen update"
+RUN /bin/zsh -i -c "antigen reset"
 
 # CMB/software
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @cmb"
+# RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @cmb"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software python2"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software pypico"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cmt"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software class"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cfitsio"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software planck"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software camel"
