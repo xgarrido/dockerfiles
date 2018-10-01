@@ -25,11 +25,4 @@ RUN /bin/zsh -i -c "antigen update"
 RUN /bin/zsh -i -c "antigen reset"
 
 # CMB/software
-# RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @cmb"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software python2"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software pypico"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cmt"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software class"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cfitsio"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software planck"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software camel"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @cmb --without-data"
