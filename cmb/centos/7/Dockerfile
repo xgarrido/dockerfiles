@@ -2,7 +2,9 @@ FROM centos:7
 MAINTAINER Xavier Garrido <xavier.garrido@lal.in2p3.fr>
 
 RUN yum -y update && yum install -y \
+    atlas-devel                     \
     blas-devel                      \
+    bzip2                           \
     gcc-c++                         \
     gcc-gfortran                    \
     git                             \
@@ -11,7 +13,12 @@ RUN yum -y update && yum install -y \
     make                            \
     python-devel                    \
     tkinter                         \
+    which                           \
     wget
+
+# Install MKL
+RUN rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+RUN yum-config-manager --add-repo https://yum.repos.intel.com/mkl/setup/intel-mkl.repo && yum install -y intel-mkl-2018.2-046
 
 # Install decent version of zsh
 RUN zsh_version=5.3.1; wget http://sourceforge.net/projects/zsh/files/zsh/${zsh_version}/zsh-${zsh_version}.tar.gz && \
@@ -27,13 +34,14 @@ WORKDIR /home/cmb
 # Zsh env.
 RUN wget --no-check-certificate https://raw.github.com/xgarrido/dotfiles/master/zshrc -O ~/.zshrc
 RUN git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
-RUN /bin/zsh -i ~/.config/zsh/antigen/antigen.zsh update
-
+RUN /bin/zsh -i -c "antigen update; antigen reset"
 
 # CMB/software
+# RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @cmb"
 RUN /bin/zsh -i -c "pkgman install --install-dir ~/software python2"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software pypico --without-data"
 RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cmt"
 RUN /bin/zsh -i -c "pkgman install --install-dir ~/software class"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software pypico"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software planck"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software camel"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cfitsio"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software planck --without-data"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software camel --without-data"
