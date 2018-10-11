@@ -37,11 +37,4 @@ RUN git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
 RUN /bin/zsh -i -c "antigen update; antigen reset"
 
 # CMB/software
-# RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @cmb"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software python2"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software pypico --without-data"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cmt"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software class"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software cfitsio"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software planck --without-data"
-RUN /bin/zsh -i -c "pkgman install --install-dir ~/software camel --without-data"
+RUN /bin/zsh -i -c "pkgman install --install-dir ~/software @cmb --without-data"
