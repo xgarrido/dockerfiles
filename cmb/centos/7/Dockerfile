@@ -21,15 +21,18 @@ RUN rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW
 RUN yum-config-manager --add-repo https://yum.repos.intel.com/mkl/setup/intel-mkl.repo && yum install -y intel-mkl-2018.2-046
 
 # Install decent version of zsh
-RUN zsh_version=5.3.1; wget http://sourceforge.net/projects/zsh/files/zsh/${zsh_version}/zsh-${zsh_version}.tar.gz && \
+RUN (cd $(mktemp -d); \
+    zsh_version=5.3.1; wget http://sourceforge.net/projects/zsh/files/zsh/${zsh_version}/zsh-${zsh_version}.tar.gz && \
     tar xzvf zsh-${zsh_version}.tar.gz && cd zsh-${zsh_version} && ./configure --without-tcsetpgrp && make && make install && \
-    ln -sf /usr/local/bin/zsh /bin/zsh
+    ln -sf /usr/local/bin/zsh /bin/zsh; \
+    rm -rf $(pwd))
 
 # Add CMB user
 RUN useradd -m -U cmb
-USER cmb
 ENV USER cmb
 WORKDIR /home/cmb
+RUN chmod 755 /home/cmb
+USER cmb
 
 # Zsh env.
 RUN wget --no-check-certificate https://raw.github.com/xgarrido/dotfiles/master/zshrc -O ~/.zshrc
