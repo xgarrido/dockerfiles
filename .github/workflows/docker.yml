@@ -62,4 +62,4 @@ jobs:
       with:
         context: teaching/
         push: true
-        tags: teaching:latest
+        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/teaching:latest
