@@ -22,7 +22,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
   changes:
-    needs: checkout
     runs-on: ubuntu-latest
     outputs:
       teaching: ${{ steps.filter.outputs.teaching }}
@@ -38,7 +37,9 @@ jobs:
             - 'teaching/Dockerfile'
 
   teaching:
-    needs: changes
+    needs:
+      - login
+      - changes
     if: ${{ needs.changes.outputs.teaching == 'true' }}
     runs-on: ubuntu-latest
     permissions:
