@@ -20,4 +20,3 @@ WORKDIR /home/teaching
 # Zsh env.
 RUN wget --no-check-certificate https://raw.githubusercontent.com/xgarrido/zsh-dotfiles/master/dotfiles/zshrc -O ~/.zshrc
 RUN /bin/zsh -i
-RUN echo

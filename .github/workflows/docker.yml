@@ -41,20 +41,14 @@ jobs:
     needs:
       - login
       - changes
-    # if: ${{ needs.changes.outputs.teaching == 'true' }}
+    if: ${{ needs.changes.outputs.teaching == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
-    - name: Echoing
-      run: |
-        echo ${{needs.changes.outputs.teaching}}
-
-      # - name: Build and push Docker image
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: .
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: teaching/
+        push: true
