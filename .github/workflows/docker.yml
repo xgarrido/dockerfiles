@@ -41,7 +41,7 @@ jobs:
     needs:
       - login
       - changes
-    if: ${{ needs.changes.outputs.teaching == 'true' }}
+    # if: ${{ needs.changes.outputs.teaching == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -52,3 +52,4 @@ jobs:
       with:
         context: teaching/
         push: true
+        tags: teaching:latest
