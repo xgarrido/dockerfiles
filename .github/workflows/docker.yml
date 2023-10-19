@@ -40,7 +40,7 @@ jobs:
     needs:
       - login
       - changes
-    if: ${{ needs.changes.outputs.teaching == 'true' }}
+    # if: ${{ needs.changes.outputs.teaching == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -48,7 +48,7 @@ jobs:
     steps:
     - name: Echoing
       run: |
-        echo "cocuou"
+        echo ${{ github.repository }}
 
       # - name: Build and push Docker image
       #   uses: docker/build-push-action@v4
