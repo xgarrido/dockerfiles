@@ -6,21 +6,7 @@ on:
     branches:
       - master
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
-  login:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Log in to the Container registry
-        uses: docker/login-action@v2
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
   changes:
     runs-on: ubuntu-latest
     outputs:
@@ -39,9 +25,8 @@ jobs:
 
   teaching:
     needs:
-      - login
       - changes
-    # if: ${{ needs.changes.outputs.teaching == 'true' }}
+    if: ${{ needs.changes.outputs.teaching == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -62,4 +47,4 @@ jobs:
       with:
         context: teaching/
         push: true
-        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/teaching:latest
+        tags: ghcr.io/xgarrido/dockerfiles/teaching:latest
