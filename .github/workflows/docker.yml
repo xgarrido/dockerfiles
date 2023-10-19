@@ -48,7 +48,7 @@ jobs:
     steps:
     - name: Echoing
       run: |
-        echo ${{ needs.changes.outputs.teaching }}
+        echo ${{needs.changes.outputs.teaching}}
 
       # - name: Build and push Docker image
       #   uses: docker/build-push-action@v4
