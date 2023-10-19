@@ -27,15 +27,14 @@ jobs:
   changes:
     needs: checkout
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
-    # Set job outputs to values from filter step
     outputs:
       teaching: ${{ steps.filter.outputs.teaching }}
     steps:
-    # For pull requests it's not necessary to checkout the code
-    - uses: dorny/paths-filter@v2
-      id: filter
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Filtering
+      uses: dorny/paths-filter@v2
       with:
         filters: |
           teaching:
