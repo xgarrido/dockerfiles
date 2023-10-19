@@ -14,9 +14,6 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
