@@ -2,7 +2,9 @@
 
 `git` repository to store several `Dockerfile`.
 
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/xgarrido/dockerfiles/docker.yml)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/xgarrido/dockerfiles/docker.yml?link=https%3A%2F%2Fgithub.com%2Fxgarrido%2Fdockerfiles%2Factions%2Fworkflows%2Fdocker.yml)
+![Static Badge](https://img.shields.io/badge/docker%20image-teaching-blue?link=https%3A%2F%2Fgithub.com%2Fxgarrido%2Fdockerfiles%2Fpkgs%2Fcontainer%2Fdockerfiles%252Fteaching)
+
 
 ## Getting and running the `docker` images
 
