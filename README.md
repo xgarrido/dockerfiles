@@ -2,7 +2,9 @@
 
 `git` repository to store several `Dockerfile`.
 
-* Getting and running the `docker` images
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/xgarrido/dockerfiles/docker.yml)
+
+## Getting and running the `docker` images
 
 The easiest way is to grab the `docker` images from Github Container Registry *aka* `ghcr`. For instance,
 to run the `teaching` image, you can do
