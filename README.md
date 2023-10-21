@@ -8,7 +8,7 @@ The easiest way is to grab the `docker` images from Github Container Registry *a
 to run the `teaching` image, you can do
 
 ```
-  docker run --rm -it ghcr.io/xgarrido/dockerfiles/teaching:latest /bin/zsh
+docker run --rm -it ghcr.io/xgarrido/dockerfiles/teaching:latest /bin/zsh
 ```
 
 ## Building the image
@@ -16,17 +16,17 @@ to run the `teaching` image, you can do
 If you not only want to use the images but also play/change with them then you have to first
 checkout this repository
 ```
-  $ git clone https://github.com/xgarrido/dockerfiles
+git clone https://github.com/xgarrido/dockerfiles
 ```
 and then run the next command from your local repository
 ```
-  $ cd teaching
-  $ docker build -t teaching:latest .
+cd teaching
+docker build -t teaching:latest .
 ```
 
 You can also build the `docker` image without checking out the github repository by doing
 ```
-  $ docker build -t teaching:latest "github.com/xgarrido/dockerfiles#:teaching"
+docker build -t teaching:latest "github.com/xgarrido/dockerfiles#:teaching"
 ```
 
 The `-t` flag set the name of the image and will be used when running your container.
@@ -41,18 +41,18 @@ the options of `docker build` command can be found
 
 Given that the `build` operation succeeds, you can interactively run your image by doing
 ```
-  $ docker run --rm -it teaching:latest /bin/zsh
+docker run --rm -it teaching:latest /bin/zsh
 ```
 You will be prompted as `teaching` user to a `zsh` terminal. The `--rm` ensures everything gets cleaned
 when stopping the image.
 
 To forward `DISPLAY`, you should frist allow `docker` to do it
 ```
-  $ xhost +local:docker
+xhost +local:docker
 ```
 and then you should add the following options to the `docker run` command
 ```
-  $ docker run -e DISPLAY`$DISPLAY \
-       -v /tmp/.X11-unix:/tmp/.X11-unix \
-       --rm -it teaching:latest /bin/zsh
+docker run -e DISPLAY`$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    --rm -it teaching:latest /bin/zsh
 ```
