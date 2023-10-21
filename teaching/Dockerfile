@@ -1,5 +1,8 @@
 FROM ubuntu:22.04
-MAINTAINER Xavier Garrido <xavier.garrido@universite-paris-saclay.fr>
+
+LABEL maintener="Xavier Garrido <xavier.garrido@universite-paris-saclay.fr>"
+LABEL timestamp="Sat Oct 21 14:03:16 CEST 2023"
+
 
 RUN apt-get update && apt-get install -y \
     emacs                                \
