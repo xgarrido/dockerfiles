@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 LABEL maintener="Xavier Garrido <xavier.garrido@universite-paris-saclay.fr>"
-LABEL timestamp="Sat Oct 21 19:01:10 CEST 2023"
+LABEL timestamp="Sun Oct 22 20:06:32 CEST 2023"
 
 
 RUN apt-get update && apt-get install -y \
